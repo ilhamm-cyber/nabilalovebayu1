@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Personal | Web Developer & Designer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3B82F6",
+              secondary: "#8B5CF6",
+              dark: "#1F2937",
+              light: "#F9FAFB",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "bounce-slow": "bounce 2s infinite",
+              "slide-up": "slideUp 0.5s ease-out",
+              "fade-in": "fadeIn 0.8s ease-out",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Custom Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .card-hover {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-bar {
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 1.5s ease-out;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #3b82f6;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 12px;
+        width: 2px;
+        height: calc(100% + 20px);
+        background: #e5e7eb;
+      }
+
+      .timeline-item:last-child::after {
+        display: none;
+      }
+
+      .testimonial-slider {
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+      }
+
+      .testimonial-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .parallax {
+        background-attachment: fixed;
+      }
+
+      @media (max-width: 768px) {
+        .parallax {
+          background-attachment: scroll;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f3f4f6;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #5a6fd8 0%, #6a4092 100%);
+      }
+
+      /* Loading Animation */
+      .loading-dots {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .loading-dots span {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+        background-color: #3b82f6;
+        border-radius: 50%;
+        animation: bounce 1.4s infinite ease-in-out both;
+      }
+
+      .loading-dots span:nth-child(1) {
+        animation-delay: -0.32s;
+      }
+
+      .loading-dots span:nth-child(2) {
+        animation-delay: -0.16s;
+      }
+    </style>
+  </head>
+  <body class="bg-light text-dark font-inter">
+    <!-- Preloader -->
+    <div
+      id="preloader"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-500"
+    >
+      <div class="text-center">
+        <div class="loading-dots mb-4">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="text-gray-600 font-medium">Loading Portfolio...</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 py-4 transition-all duration-300">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href="#home" class="text-2xl font-bold text-primary">
+            <span class="gradient-text">Portfolio</span>.dev
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8">
+            <a href="#home" class="font-medium hover:text-primary transition"
+              >Home</a
+            >
+            <a href="#about" class="font-medium hover:text-primary transition"
+              >About</a
+            >
+            <a
+              href="#services"
+              class="font-medium hover:text-primary transition"
+              >Services</a
+            >
+            <a
+              href="#portfolio"
+              class="font-medium hover:text-primary transition"
+              >Portfolio</a
+            >
+            <a href="#skills" class="font-medium hover:text-primary transition"
+              >Skills</a
+            >
+           
+            <a
+              href="#contact"
+              class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="menuBtn" class="lg:hidden text-dark">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="lg:hidden fixed inset-0 z-30 bg-white transform -translate-y-full transition-transform duration-300"
+      >
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+          <a
+            href="#home"
+            class="text-2xl font-medium hover:text-primary transition"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="text-2xl font-medium hover:text-primary transition"
+            >About</a
+          >
+          <a
+            href="#services"
+            class="text-2xl font-medium hover:text-primary transition"
+            >Services</a
+          >
+          <a
+            href="#portfolio"
+            class="text-2xl font-medium hover:text-primary transition"
+            >Portfolio</a
+          >
+          <a
+            href="#skills"
+            class="text-2xl font-medium hover:text-primary transition"
+            >Skills</a
+          >
+          
+          
+          <a
+            href="#contact"
+            class="text-2xl font-medium hover:text-primary transition"
+            >Contact</a
+          >
+
+          <button
+            id="closeMenu"
+            class="absolute top-6 right-6 text-3xl text-gray-600"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen pt-20 lg:pt-0 flex items-center relative overflow-hidden"
+    >
+      <!-- Background Elements -->
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"
+        ></div>
+        <div
+          class="absolute bottom-20 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow animation-delay-2000"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-6 lg:px-12 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center">
+          <!-- Text Content -->
+          <div class="lg:w-1/2 mb-12 lg:mb-0 animate-slide-up">
+            <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              Hi, I'm
+              <span class="gradient-text">nabila fitriyani</span>
+              <br />
+              <span class="text-dark">Creative Developer</span>
+            </h1>
+
+            <p class="text-gray-600 text-lg mb-8 max-w-2xl">
+              I design and develop exceptional digital experiences that are
+              fast, accessible, visually appealing, and responsive. Let's build
+              something amazing together.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#portfolio"
+                class="gradient-bg text-white px-8 py-3 rounded-full font-medium hover:shadow-xl transition-all duration-300 flex items-center"
+              >
+                View My Work
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+              <a
+                href="#contact"
+                class="border-2 border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                <i class="fas fa-envelope mr-2"></i>
+                Contact Me
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex items-center space-x-4 mt-12">
+              <span class="text-gray-600">Follow me:</span>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-primary hover:bg-blue-50 transition"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition"
+                >
+                  <i class="fab fa-dribbble"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-400 hover:bg-blue-50 transition"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="lg:w-1/2 flex justify-center">
+            <div class="relative">
+              <div
+                class="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl"
+              >
+                <!-- Ganti URL gambar di bawah ini dengan foto kamu -->
+                <img
+                  id="profileImage"
+                  src="foto/nabila.jpg"
+                  alt="Profile"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+
+              <!-- Floating Elements -->
+              <div
+                class="absolute -top-6 -right-6 w-24 h-24 rounded-2xl gradient-bg flex items-center justify-center text-white animate-float"
+              >
+                <div class="text-center">
+                  <span class="block text-2xl font-bold">2+</span>
+                  <span class="text-sm">Years Exp</span>
+                </div>
+              </div>
+
+              <div
+                class="absolute -bottom-6 -left-6 w-20 h-20 rounded-full bg-white shadow-xl flex items-center justify-center animate-float animation-delay-1000"
+              >
+                <div class="text-center">
+                  <span class="block text-xl font-bold text-primary">50+</span>
+                  <span class="text-xs text-gray-600">Projects</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <a href="#about" class="animate-bounce-slow">
+          <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <span class="text-primary font-medium mb-2 block">ABOUT ME</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">Get to Know Me</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            I'm passionate about creating digital experiences that make people's
+            lives better
+          </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <!-- About Image -->
+          <div class="lg:w-1/3">
+            <div class="relative">
+              <div class="w-full rounded-2xl overflow-hidden shadow-2xl">
+                <!-- Ganti gambar tentang kamu di sini -->
+                <img src="foto/sopia.jpg" alt="About" class="w-full h-auto" />
+              </div>
+            </div>
+          </div>
+
+          <!-- About Content -->
+          <div class="lg:w-2/3">
+            <h3 class="text-3xl font-bold mb-6">
+              Hello! I'm a Passionate
+              <span class="gradient-text">Web Developer</span>
+            </h3>
+
+            <p class="text-gray-600 mb-6">
+              With over 2 years of professional experience, I specialize in
+              creating beautiful, functional, and user-friendly websites and
+              applications. My passion lies in turning complex problems into
+              simple, beautiful designs.
+            </p>
+
+            <!-- <p class="text-gray-600 mb-8">
+              I believe in the power of design and technology to transform
+              businesses and improve lives. Every project is an opportunity to
+              create something meaningful and impactful.
+            </p> -->
+
+            <!-- Info Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-primary mr-4"
+                >
+                  <i class="fas fa-user"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Name</h4>
+                  <p class="text-gray-600">Nabila fitriyani</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4"
+                >
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Email</h4>
+                  <a href class="text-gray-600"
+                    >nabila.fitriyani.ig2@gmail.com</a
+                  >
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-4"
+                >
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Phone</h4>
+                  <p class="text-gray-600">+62 855-8049-122</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 mr-4"
+                >
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Location</h4>
+                  <p class="text-gray-600">Depok, Indonesia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <span class="text-primary font-medium mb-2 block">SERVICES</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">What I Do</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            I offer a wide range of services to help you achieve your digital
+            goals
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white rounded-2xl p-8 card-hover shadow-lg">
+            <div
+              class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center text-white mb-6"
+            >
+              <i class="fas fa-laptop-code text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Web Development</h3>
+            <p class="text-gray-600 mb-6">
+              Custom website development with modern technologies like React,
+              Vue.js, and Node.js for optimal performance.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Responsive Design</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>SEO Optimization</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Performance Focus</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="bg-white rounded-2xl p-8 card-hover shadow-lg">
+            <div
+              class="w-16 h-16 rounded-2xl bg-purple-600 flex items-center justify-center text-white mb-6"
+            >
+              <i class="fas fa-paint-brush text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">UI/UX Design</h3>
+            <p class="text-gray-600 mb-6">
+              Creating intuitive and beautiful user interfaces that provide
+              exceptional user experiences across all devices.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>User Research</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Wireframing</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Prototyping</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="bg-white rounded-2xl p-8 card-hover shadow-lg">
+            <div
+              class="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6"
+            >
+              <i class="fas fa-mobile-alt text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Mobile Development</h3>
+            <p class="text-gray-600 mb-6">
+              Building cross-platform mobile applications with React Native for
+              both iOS and Android devices.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Cross-Platform</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>Native Performance</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                <span>App Store Deployment</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <span class="text-primary font-medium mb-2 block">PORTFOLIO</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">Featured Projects</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Explore my recent work and see how I've helped clients achieve their
+            goals
+          </p>
+        </div>
+
+        <!-- Portfolio Filter -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            class="px-6 py-2 rounded-full bg-primary text-white font-medium"
+          >
+            All
+          </button>
+          <button
+            class="px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200"
+          >
+            Web Design
+          </button>
+          <button
+            class="px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200"
+          >
+            Development
+          </button>
+          <button
+            class="px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200"
+          >
+            Mobile Apps
+          </button>
+          <button
+            class="px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200"
+          >
+            Branding
+          </button>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg card-hover"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="foto/nabilapea3.jpg"
+                alt="E-commerce Website"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            ></div>
+            <div
+              class="absolute top-4 right-4 bg-white text-primary px-4 py-1 rounded-full text-sm font-medium"
+            >
+              hehehe
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg card-hover"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="foto/nabila5.jpg"
+                alt="Dashboard Analytics"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+           
+        
+            <div
+              class="absolute top-4 right-4 bg-white text-green-600 px-4 py-1 rounded-full text-sm font-medium"
+            >
+              hihihi
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="group relative overflow-hidden rounded-2xl shadow-lg card-hover"
+          >
+            <div class="h-64 overflow-hidden">
+              <img
+                src="foto/nabila4.jpg"
+                alt="Mobile App"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
+            >
+            
+            </div>
+            <div
+              class="absolute top-4 right-4 bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-medium"
+            >
+            hahaha
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="#"
+            class="inline-flex items-center text-primary font-medium text-lg hover:text-blue-700"
+          >
+            View All Projects
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <span class="text-primary font-medium mb-2 block">SKILLS</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">My Expertise</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Continuously learning and mastering new technologies
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Professional Skills -->
+          <div>
+            <h3 class="text-2xl font-bold mb-8">Professional Skills</h3>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                <div
+                  class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-primary text-2xl mb-4 mx-auto"
+                >
+                  <i class="fas fa-comments"></i>
+                </div>
+                <h4 class="font-bold mb-2">Communication</h4>
+                <p class="text-gray-600 text-sm">
+                  Clear and effective communication skills
+                </p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                <div
+                  class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl mb-4 mx-auto"
+                >
+                  <i class="fas fa-users"></i>
+                </div>
+                <h4 class="font-bold mb-2">Teamwork</h4>
+                <p class="text-gray-600 text-sm">Collaborative team player</p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                <div
+                  class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-2xl mb-4 mx-auto"
+                >
+                  <i class="fas fa-lightbulb"></i>
+                </div>
+                <h4 class="font-bold mb-2">Problem Solving</h4>
+                <p class="text-gray-600 text-sm">Creative solution finder</p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-6 text-center shadow-lg">
+                <div
+                  class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-2xl mb-4 mx-auto"
+                >
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <h4 class="font-bold mb-2">Project Management</h4>
+                <p class="text-gray-600 text-sm">Efficient project handling</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <span class="text-blue-400 font-medium mb-2 block">CONTACT</span>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+            Let's Work Together
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Have a project in mind? I'd love to hear about it
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div class="bg-gray-800 rounded-2xl p-8">
+            <form id="contactForm" class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-gray-300 mb-2">Your Name</label>
+                  <input
+                    type="text"
+                    class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    placeholder="nabila "
+                    required
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-300 mb-2">Email Address</label>
+                  <input
+                    type="email"
+                    class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    placeholder="hello@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-gray-300 mb-2">Subject</label>
+                <input
+                  type="text"
+                  class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  placeholder="Project Inquiry"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-gray-300 mb-2">Message</label>
+                <textarea
+                  rows="5"
+                  class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  placeholder="Tell me about your project..."
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+              >
+                <i class="fas fa-paper-plane mr-2"></i>
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <div class="space-y-8">
+              <!-- Contact Info 1 -->
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-white mr-4"
+                >
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold mb-2">Location</h4>
+                  <p class="text-gray-400">Depok, Indonesia</p>
+                </div>
+              </div>
+
+              <!-- Contact Info 2 -->
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-white mr-4"
+                >
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold mb-2">Email</h4>
+                  <p class="text-gray-400">nabila.fitriyani.ig2@gmail.com</p>
+                </div>
+              </div>
+
+              <!-- Contact Info 3 -->
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-white mr-4"
+                >
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold mb-2">Phone</h4>
+                  <p class="text-gray-400">+62 855-8049-122</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map -->
+            <div class="mt-12 bg-gray-800 rounded-2xl p-6">
+              <h4 class="text-xl font-bold mb-4">Find Me Here</h4>
+              <div
+                class="h-48 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-map text-4xl text-white/50"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-white py-12">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="flex flex-col lg:flex-row justify-between items-center">
+          <div class="mb-8 lg:mb-0">
+            <a href="#home" class="text-3xl font-bold">
+              <span class="gradient-text">Nabila</span>.fit
+            </a>
+            <p class="text-gray-400 mt-2">
+              Creating digital experiences that matter
+            </p>
+          </div>
+
+          <div class="flex space-x-6 mb-8 lg:mb-0">
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-pink-600 transition"
+            >
+              <i class="fab fa-dribbble"></i>
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-400 transition"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+
+          <div>
+            <a href="#home" class="text-gray-400 hover:text-white transition">
+              <i class="fas fa-arrow-up mr-2"></i>
+              Back to Top
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>
+Say thankyou
+            <i class="fas fa-heart text-red-500 mx-1"></i> by Nabila fitriyani
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="config.js"></script>
+  </body>
+</html>
